@@ -67,7 +67,7 @@ domready(function () {
 });
 ```
 
-Do make this all magically work and use the short-form bower name of "amdcomponent" chain both debowerify and deamdify together like this:
+To make this all magically work and use the short-form bower name of "amdcomponent" chain both debowerify and deamdify together like this:
 
 ```
 $ browserify -t debowerify -t deamdify public/scripts/amdapp.js -o public/scripts/build/bundle.js
