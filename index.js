@@ -51,8 +51,9 @@ module.exports = function (file) {
         if (moduleName && moduleName in bowerModules) {
           var module = bowerModules[moduleName];
           if (module && module.source && module.source.main) {
-            var modulePath = path.resolve(module.source.main);
-            node.update('require(\'' + modulePath + '\')');
+            var fullModulePath = path.resolve(module.source.main);
+            var relativeModulePath = path.relative(path.dirname(file), fullModulePath);
+            node.update('require(' + JSON.stringify(relativeModulePath) + ')');
           }
         }
       }
