@@ -1,11 +1,11 @@
 {
   "name": "debowerify",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A browserify transform to enable the easy use of bower components in browserify client javascript projects. This can be used in conjunction with deamdify to require AMD components from bower as well.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nharbour/debowerify"
+    "url": "https://github.com/eugeneware/debowerify"
   },
   "keywords": [
     "bower",
