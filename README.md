@@ -2,7 +2,7 @@
 
 A browserify transform to enable the easy use of [bower](https://bower.io) components in browserify client javascript projects.
 
-This can be used in conjunction with [deamdify](https://github.com/jaredhanson/deamdify) to require AMD components from AMD as well.
+This can be used in conjunction with [deamdify](https://github.com/jaredhanson/deamdify) to require AMD components from bower as well.
 
 ## Installation
 
