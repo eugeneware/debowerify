@@ -1,0 +1,34 @@
+{
+  "name": "debowerify",
+  "version": "0.0.1",
+  "description": "Allow simple use of bower components with browserify",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nharbour/debowerify"
+  },
+  "keywords": [
+    "bower",
+    "component",
+    "components",
+    "browserify",
+    "transform"
+  ],
+  "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "license": "BSD",
+  "dependencies": {
+    "through": "~2.3.4",
+    "falafel": "~0.2.1"
+  },
+  "devDependencies": {
+    "domready": "~0.2.11",
+    "deamdify": "~0.1.1"
+  },
+  "readmeFilename": "README.md",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
