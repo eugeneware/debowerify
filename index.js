@@ -53,7 +53,7 @@ module.exports = function (file) {
           if (module && module.source && module.source.main) {
             var fullModulePath = path.resolve(module.source.main);
             var relativeModulePath = path.relative(path.dirname(file), fullModulePath);
-            node.update('require(' + JSON.stringify(relativeModulePath) + ')');
+            node.arguments[0].update(JSON.stringify(relativeModulePath));
           }
         }
       }
