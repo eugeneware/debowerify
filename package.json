@@ -1,6 +1,6 @@
 {
   "name": "debowerify",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A browserify transform to enable the easy use of bower components in browserify client javascript projects. This can be used in conjunction with deamdify to require AMD components from bower as well.",
   "main": "index.js",
   "repository": {
@@ -21,10 +21,8 @@
     "falafel": "~0.2.1",
     "bower": "~0.9.4"
   },
-  "peerDependencies": {
-    "bower": "~0.9.2"
-  },
   "devDependencies": {
+    "bower": "~0.9.2",
     "domready": "~0.2.11",
     "deamdify": "~0.1.1"
   },
