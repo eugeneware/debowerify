@@ -51,7 +51,8 @@ module.exports = function (file) {
         if (moduleName && moduleName in bowerModules) {
           var module = bowerModules[moduleName];
           if (module && module.source && module.source.main) {
-            var fullModulePath = path.resolve(module.source.main);
+            var mainModule = Array.isArray(module.source.main) ? module.source.main[0] : module.source.main;
+            var fullModulePath = path.resolve(mainModule);
             var relativeModulePath = './' + path.relative(path.dirname(file), fullModulePath);
             node.arguments[0].update(JSON.stringify(relativeModulePath));
           }
