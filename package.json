@@ -1,6 +1,6 @@
 {
   "name": "debowerify",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A browserify transform to enable the easy use of bower components in browserify client javascript projects. This can be used in conjunction with deamdify to require AMD components from bower as well.",
   "main": "index.js",
   "repository": {
