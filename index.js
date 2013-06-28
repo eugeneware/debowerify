@@ -20,7 +20,7 @@ module.exports = function (file) {
           bowerModules = map;
           bower.commands.ls({paths: true})
             .on('data', function(paths) {
-              for (m in paths) {
+              for (var m in paths) {
                 if(!paths.hasOwnProperty(m)) continue;
                 bowerModules[m].path = paths[m];
               }
@@ -64,7 +64,7 @@ module.exports = function (file) {
             } else {
               // if 'main' wasn't specified by this component, let's try
               // guessing that the main file is moduleName.js
-              mainModule = path.join(module.path, moduleName+".js");
+              mainModule = path.join(module.path, moduleName + '.js');
             }
             var fullModulePath = path.resolve(mainModule);
             var relativeModulePath = './' + path.relative(path.dirname(file), fullModulePath);
