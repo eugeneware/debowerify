@@ -31,13 +31,11 @@ module.exports = function (file) {
       next();
     }
 
-    var self = this;
-
     function next() {
       var output;
       try { output = parse(); }
       catch (err) {
-        self.emit('error', new Error(
+        tr.emit('error', new Error(
           err.toString().replace('Error: ', '') + ' (' + file + ')')
         );
       }
