@@ -15,17 +15,10 @@ module.exports = function (file) {
   function write (buf) { data += buf; }
   function end () {
     if (bowerModules === undefined) {
-      bower.commands.ls({map: true})
-        .on('data', function (map) {
+      bower.commands.list({map: true})
+        .on('end', function (map) {
           bowerModules = map;
-          bower.commands.ls({paths: true})
-            .on('data', function(paths) {
-              for (var m in paths) {
-                if(!paths.hasOwnProperty(m)) continue;
-                bowerModules[m].path = paths[m];
-              }
-              next();
-            });
+          next();
         });
     } else {
       next();
@@ -53,18 +46,19 @@ module.exports = function (file) {
     var output = falafel(data, function (node) {
       if (node.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'require') {
         var moduleName = node.arguments[0].value;
-        if (moduleName && moduleName in bowerModules) {
-          var module = bowerModules[moduleName];
-          var mainModule;
+        if (moduleName && moduleName in bowerModules.dependencies) {
+          var module = bowerModules.dependencies[moduleName];
           if (module) {
-            if (module.source && module.source.main) {
-              mainModule = Array.isArray(module.source.main) ? module.source.main[0] : module.source.main;
+            var mainModule;
+            var pkgMeta = module.pkgMeta;
+            if (pkgMeta && pkgMeta.main) {
+              mainModule = Array.isArray(pkgMeta.main) ? pkgMeta.main[0] : pkgMeta.main;
             } else {
               // if 'main' wasn't specified by this component, let's try
               // guessing that the main file is moduleName.js
-              mainModule = path.join(module.path, moduleName + '.js');
+              mainModule = moduleName + '.js';
             }
-            var fullModulePath = path.resolve(mainModule);
+            var fullModulePath = path.resolve(path.join(module.canonicalDir, mainModule));
             var relativeModulePath = './' + path.relative(path.dirname(file), fullModulePath);
             node.arguments[0].update(JSON.stringify(relativeModulePath));
           }
