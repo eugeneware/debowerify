@@ -21,7 +21,7 @@
     "falafel": "~0.2.1"
   },
   "peerDependencies": {
-    "bower": "~1.0.3"
+    "bower": "~1.1.0"
   },
   "devDependencies": {
     "domready": "~0.2.11",
