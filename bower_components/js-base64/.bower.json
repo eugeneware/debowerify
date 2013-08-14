@@ -1,0 +1,22 @@
+{
+  "name": "js-base64",
+  "version": "2.1.2",
+  "main": [
+    "./base64.js"
+  ],
+  "ignore": [
+    "old",
+    "test"
+  ],
+  "dependencies": {},
+  "homepage": "https://github.com/dankogai/js-base64",
+  "_release": "2.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.1.2",
+    "commit": "faaf39a26a709614ce233cc78436ac45484ee14c"
+  },
+  "_source": "git://github.com/dankogai/js-base64.git",
+  "_target": "~2.1.2",
+  "_direct": true
+}

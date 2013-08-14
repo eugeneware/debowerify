@@ -2,3 +2,4 @@ Makefile
 components/
 bower_components/
 test/
+public/
