@@ -8,6 +8,8 @@ NB: For more information about how to use debowerify to create stand-alone libra
 check out [bower-resolve](https://github.com/eugeneware/bower-resolve) and the 
 examples in the README.
 
+[![build status](https://secure.travis-ci.org/eugeneware/debowerify.png)](http://travis-ci.org/eugeneware/debowerify)
+
 ## Installation
 
 Installation is via npm:
