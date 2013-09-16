@@ -4,6 +4,10 @@ A browserify transform to enable the easy use of [bower](https://bower.io) compo
 
 This can be used in conjunction with [deamdify](https://github.com/jaredhanson/deamdify) to require AMD components from bower as well.
 
+NB: For more information about how to use debowerify to create stand-alone library bundles
+check out [bower-resolve](https://github.com/eugeneware/bower-resolve) and the 
+examples in the README.
+
 ## Installation
 
 Installation is via npm:
