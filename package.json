@@ -18,8 +18,8 @@
   "license": "BSD",
   "dependencies": {
     "through": "~2.3.4",
-    "falafel": "~0.2.1",
-    "bower": "~1.2.0"
+    "falafel": "~0.3.1",
+    "bower": "~1.2.6"
   },
   "devDependencies": {
     "domready": "~0.2.11",
