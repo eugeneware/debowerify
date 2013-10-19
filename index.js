@@ -15,7 +15,7 @@ module.exports = function (file) {
   function write (buf) { data += buf; }
   function end () {
     if (bowerModules === undefined) {
-      bower.commands.list({map: true})
+      bower.commands.list({offline: true})
         .on('end', function (map) {
           bowerModules = map;
           next();
