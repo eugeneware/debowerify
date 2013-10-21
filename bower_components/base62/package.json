@@ -1,0 +1,29 @@
+{
+  "name": "base62.js",
+  "version": "0.4.0",
+  "author": "sasa+1 <sasaplus1@gmail.com>",
+  "description": "base62 encode/decode library",
+  "main": "./index.js",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sasaplus1/base62.js.git"
+  },
+  "scripts": {
+    "bower": "bower install",
+    "fix": "fixjsstyle --strict --nojsdoc -r ./lib -r ./test ./index.js",
+    "lint": "gjslint --strict --nojsdoc -r ./lib -r ./test ./index.js",
+    "mini": "uglifyjs ./lib/base62.js --comments -cm -d 'module=void 0' -r base62 -o ./base62.min.js",
+    "test": "NODE_ENV=test mocha",
+    "testem": "testem ci",
+    "travis": "testem ci --launch Firefox,PhantomJS"
+  },
+  "devDependencies": {
+    "bower": "~1.2",
+    "expect.js": "~0.2",
+    "mocha": "~1.12",
+    "testem": "~0.4",
+    "uglify-js": "~2.4"
+  }
+}

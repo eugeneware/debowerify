@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bower_components/mocha/mocha.css">
+    <title>base62.min.js</title>
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="../bower_components/expect/expect.js"></script>
+    <script src="../bower_components/mocha/mocha.js"></script>
+    <script src="/testem.js"></script>
+    <script>
+      mocha.setup('bdd');
+    </script>
+    <script src="../base62.min.js"></script>
+    <script src="./test-base62.js"></script>
+    <script src="./test-index.js"></script>
+    <script>
+      mocha.checkLeaks();
+      mocha.run();
+    </script>
+  </body>
+</html>

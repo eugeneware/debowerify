@@ -46,8 +46,11 @@ module.exports = function (file) {
     var output = falafel(data, function (node) {
       if (node.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'require') {
         var moduleName = node.arguments[0].value;
-        if (moduleName && moduleName in bowerModules.dependencies) {
+        if (moduleName && bowerModules.dependencies) {
           var module = bowerModules.dependencies[moduleName];
+          if (!module && bowerModules.devDependencies) {
+            module = bowerModules.devDependencies[moduleName];
+          }
           if (module) {
             var mainModule;
             var pkgMeta = module.pkgMeta;
