@@ -1,0 +1,7 @@
+base62.min.js
+npm-debug.log
+.DS_Store
+.*.swp
+.travis.yml
+.git*
+bower_components/

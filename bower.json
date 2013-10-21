@@ -1,0 +1,10 @@
+{
+  "name": "debowerify-test",
+  "verision": "0.0.0",
+  "dependencies": {
+    "js-base64": "~2.1.2"
+  },
+  "devDependencies": {
+    "base62": "~0.4.0"
+  }
+}

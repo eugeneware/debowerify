@@ -1,0 +1,18 @@
+{
+  "name": "base62",
+  "version": "0.4.0",
+  "main": "./base62.min.js",
+  "devDependencies": {
+    "expect": "~0.2",
+    "mocha": "~1.12"
+  },
+  "homepage": "https://github.com/sasaplus1/base62.js",
+  "_release": "0.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.4.0",
+    "commit": "a88a0f4519016d22d27f8d7490af0164094924a1"
+  },
+  "_source": "git://github.com/sasaplus1/base62.js.git",
+  "_target": "~0.4.0"
+}

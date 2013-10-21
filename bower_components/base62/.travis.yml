@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "0.8"
+  - "0.10"
+notifications:
+  email: false
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 5
+script:
+  - npm run-script bower
+  - npm test
+  - npm run-script travis
