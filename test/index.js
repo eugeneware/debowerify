@@ -43,4 +43,22 @@ describe('debowerify', function() {
     });
   });
 
+  it('should be able to debowerify a submodule', function(done) {
+    var jsPath = path.join(__dirname, '..', 'public', 'by_subpath.js');
+    var b = browserify();
+    b.add(jsPath);
+    b.transform(debowerify);
+    b.bundle(function (err, src) {
+      if (err) return done(err);
+      vm.runInNewContext(src, {
+        console: {
+          log: function (msg) {
+            expect(msg).to.equal(12345);
+            done();
+          }
+        }
+      });
+    });
+  });
+
 });

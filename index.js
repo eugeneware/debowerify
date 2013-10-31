@@ -45,29 +45,48 @@ module.exports = function (file) {
   function parse () {
     var output = falafel(data, function (node) {
       if (node.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'require') {
-        var moduleName = node.arguments[0].value;
+        var pth = node.arguments[0].value;
+        var moduleName = getModuleName(pth);
+        var moduleSubPath = getModuleSubPath(pth);
+
         if (moduleName && bowerModules.dependencies) {
           var module = bowerModules.dependencies[moduleName];
           if (!module && bowerModules.devDependencies) {
             module = bowerModules.devDependencies[moduleName];
           }
+
           if (module) {
-            var mainModule;
             var pkgMeta = module.pkgMeta;
-            if (pkgMeta && pkgMeta.main) {
-              mainModule = Array.isArray(pkgMeta.main) ? pkgMeta.main[0] : pkgMeta.main;
-            } else {
-              // if 'main' wasn't specified by this component, let's try
-              // guessing that the main file is moduleName.js
-              mainModule = moduleName + '.js';
+            var requiredFilePath = moduleSubPath
+
+            if (!requiredFilePath){
+              if (pkgMeta && pkgMeta.main) {
+                requiredFilePath = Array.isArray(pkgMeta.main) ? pkgMeta.main[0] : pkgMeta.main;
+              } else {
+                // if 'main' wasn't specified by this component, let's try
+                // guessing that the main file is moduleName.js
+                requiredFilePath = moduleName + '.js';
+              }
             }
-            var fullModulePath = path.resolve(path.join(module.canonicalDir, mainModule));
-            var relativeModulePath = './' + path.relative(path.dirname(file), fullModulePath);
-            node.arguments[0].update(JSON.stringify(relativeModulePath));
+
+            var fullModulePath = path.resolve(path.join(module.canonicalDir, requiredFilePath));
+            var relativeRequiredFilePath = './' + path.relative(path.dirname(file), fullModulePath);
+            node.arguments[0].update(JSON.stringify(relativeRequiredFilePath));
           }
         }
       }
     });
+
+    function getModuleName(path){
+      return path.split('/')[0]
+    }
+
+    function getModuleSubPath(path){
+      var idx = path.indexOf('/')
+      if (idx === -1) return null
+      return path.substring(idx)
+    }
+
     return output;
   }
 };
