@@ -61,4 +61,15 @@ describe('debowerify', function() {
     });
   });
 
+  it('should be able to debowerify a module with other dependencies', function(done) {
+    var b = browserify();
+    b.add(path.join(__dirname, '..', 'public', 'deep_dependencies_test.js'));
+    b.transform(debowerify);
+    b.bundle(function (err, src) {
+      if (err) return done(err);
+      vm.runInNewContext(src);
+      done();
+    });
+  });
+
 });

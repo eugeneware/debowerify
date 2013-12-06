@@ -1,0 +1,6 @@
+{
+  "name": "test-package-a",
+  "dependencies": {
+    "test-package-b": "./test/fixtures/test-package-b"
+  }
+}

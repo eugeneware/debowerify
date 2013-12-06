@@ -1,0 +1,9 @@
+{
+  "name": "test-package-a",
+  "dependencies": {
+    "test-package-b": "./test/fixtures/test-package-b"
+  },
+  "_source": "/Users/frosas/projects/debowerify/test/fixtures/test-package-a",
+  "_target": "*",
+  "_originalSource": "./test/fixtures/test-package-a"
+}
