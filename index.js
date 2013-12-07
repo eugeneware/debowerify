@@ -42,6 +42,31 @@ module.exports = function (file) {
     tr.queue(null);
   }
 
+  /**
+   * @param {Object} module As provided by Bower
+   * @returns {Object} A dictionary of the module dependencies
+   */
+  function getModuleDependencies (module) {
+    return ['dependencies', 'devDependencies'].reduce(function(dependencies, property) {
+      for (var name in module[property]) dependencies[name] = module[property][name];
+      return dependencies;
+    }, {});
+  };
+
+  /**
+   * @param {string} name
+   * @param {Object} [parent] The parent module, as provided by Bower
+   * @returns {Object|null} The module as provided by Bower or null if not found
+   */
+  function getModule (name, parent) {
+    parent = parent || bowerModules;
+    var dependencies = getModuleDependencies(parent);
+    for (var dependencyName in dependencies) {
+      var module = dependencies[name] || getModule(name, dependencies[dependencyName]);
+      if (module) return module;
+    }
+  };
+
   function parse () {
     var output = falafel(data, function (node) {
       if (node.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'require') {
@@ -49,31 +74,25 @@ module.exports = function (file) {
         var moduleName = getModuleName(pth);
         var moduleSubPath = getModuleSubPath(pth);
 
-        if (moduleName && bowerModules.dependencies) {
-          var module = bowerModules.dependencies[moduleName];
-          if (!module && bowerModules.devDependencies) {
-            module = bowerModules.devDependencies[moduleName];
-          }
+        var module = getModule(moduleName);
+        if (!module) return;
 
-          if (module) {
-            var pkgMeta = module.pkgMeta;
-            var requiredFilePath = moduleSubPath
+        var pkgMeta = module.pkgMeta;
+        var requiredFilePath = moduleSubPath;
 
-            if (!requiredFilePath){
-              if (pkgMeta && pkgMeta.main) {
-                requiredFilePath = Array.isArray(pkgMeta.main) ? pkgMeta.main[0] : pkgMeta.main;
-              } else {
-                // if 'main' wasn't specified by this component, let's try
-                // guessing that the main file is moduleName.js
-                requiredFilePath = moduleName + '.js';
-              }
-            }
-
-            var fullModulePath = path.resolve(path.join(module.canonicalDir, requiredFilePath));
-            var relativeRequiredFilePath = './' + path.relative(path.dirname(file), fullModulePath);
-            node.arguments[0].update(JSON.stringify(relativeRequiredFilePath));
+        if (!requiredFilePath){
+          if (pkgMeta && pkgMeta.main) {
+            requiredFilePath = Array.isArray(pkgMeta.main) ? pkgMeta.main[0] : pkgMeta.main;
+          } else {
+            // if 'main' wasn't specified by this component, let's try
+            // guessing that the main file is moduleName.js
+            requiredFilePath = moduleName + '.js';
           }
         }
+
+        var fullModulePath = path.resolve(path.join(module.canonicalDir, requiredFilePath));
+        var relativeRequiredFilePath = './' + path.relative(path.dirname(file), fullModulePath);
+        node.arguments[0].update(JSON.stringify(relativeRequiredFilePath));
       }
     });
 

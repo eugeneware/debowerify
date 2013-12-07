@@ -1,0 +1,6 @@
+{
+  "name": "test-package-b",
+  "_source": "/Users/frosas/projects/debowerify/test/fixtures/test-package-b",
+  "_target": "*",
+  "_originalSource": "./test/fixtures/test-package-b"
+}
