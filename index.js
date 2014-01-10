@@ -84,7 +84,7 @@ module.exports = function (file) {
 
         if (!requiredFilePath){
           if (pkgMeta && pkgMeta.main) {
-            requiredFilePath = Array.isArray(pkgMeta.main) ? pkgMeta.main[0] : pkgMeta.main;
+            requiredFilePath = Array.isArray(pkgMeta.main) ? pkgMeta.main.filter(function (file) { return /\.js$/.test(file); })[0] : pkgMeta.main;
           } else {
             // if 'main' wasn't specified by this component, let's try
             // guessing that the main file is moduleName.js
