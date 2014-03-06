@@ -22,11 +22,11 @@
     "bower": "~1.2.6"
   },
   "devDependencies": {
-    "domready": "~0.2.11",
+    "domready": "~1.0.4",
     "deamdify": "~0.1.1",
-    "chai": "~1.7.2",
-    "mocha": "~1.12.0",
-    "browserify": "~2.26.0"
+    "chai": "~1.9.0",
+    "mocha": "~1.17.1",
+    "browserify": "~3.32.0"
   },
   "readmeFilename": "README.md",
   "directories": {
