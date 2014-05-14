@@ -80,9 +80,9 @@ module.exports = function (file) {
         if (!module) return;
 
         if (module.missing) {
-	        throw new Error('could not resolve dependency ' + moduleName + 
-			      ' : bower returns the module as known but not found (did you forget to run bower install ?)');
-	      }
+          throw new Error('could not resolve dependency ' + moduleName + 
+            ' : bower returns the module as known but not found (did you forget to run bower install ?)');
+	}
 	      
         var pkgMeta = module.pkgMeta;
         var requiredFilePath = moduleSubPath;
