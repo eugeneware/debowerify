@@ -79,6 +79,11 @@ module.exports = function (file) {
         var module = getModule(moduleName);
         if (!module) return;
 
+        if (module.missing) {
+          throw new Error('could not resolve dependency ' + moduleName + 
+            ' : bower returns the module as known but not found (did you forget to run bower install ?)');
+	}
+	      
         var pkgMeta = module.pkgMeta;
         var requiredFilePath = moduleSubPath;
 
@@ -91,6 +96,7 @@ module.exports = function (file) {
             requiredFilePath = moduleName + '.js';
           }
         }
+
 
         var fullModulePath = path.resolve(path.join(module.canonicalDir, requiredFilePath));
         var relativeRequiredFilePath = './' + path.relative(path.dirname(file), fullModulePath);
