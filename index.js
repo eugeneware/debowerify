@@ -6,7 +6,7 @@ var through = require('through');
 var falafel = require('falafel');
 
 module.exports = function (file) {
-  if (!/\.(js|jsx|(lit)?coffee(\.md)?|ls)$/.test(file)) return through();
+  if (!/\.(js|jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
   var data = '';
 
   var tr = through(write, end);
