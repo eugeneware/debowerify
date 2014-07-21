@@ -105,6 +105,7 @@ module.exports = function (file) {
     });
 
     function getModuleName(path){
+      if(typeof path === 'number') return path
       return path.split('/')[0]
     }
 
