@@ -71,6 +71,7 @@ module.exports = function (file) {
     var output = falafel(data, function (node) {
       if (node.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'require') {
         var pth = node.arguments[0].value;
+        if(typeof pth === 'number') pth += '';
         if(!pth) return;
 
         var moduleName = getModuleName(pth);
