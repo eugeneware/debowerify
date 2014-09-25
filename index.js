@@ -1,11 +1,12 @@
 var bower = require('bower');
-var bowerModules;
 
 var path = require('path');
 var through = require('through');
 var falafel = require('falafel');
 
 module.exports = function (file) {
+  var bowerModules;
+  
   if (!/\.(js|jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
   var data = '';
 
