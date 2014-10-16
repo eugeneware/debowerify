@@ -7,7 +7,7 @@ var falafel = require('falafel');
 module.exports = function (file) {
   var bowerModules;
   
-  if (!/\.(js|jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
+  if (!/\.(js|c?jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
   var data = '';
 
   var tr = through(write, end);
