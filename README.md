@@ -114,7 +114,7 @@ debowerify is only possible due to the excellent work of the following contribut
 <tr><th align="left">Matt Kunze</th><td><a href="https://github.com/MattKunze">GitHub/MattKunze</a></td></tr>
 <tr><th align="left">Francesc Rosas</th><td><a href="https://github.com/frosas">GitHub/frosas</a></td></tr>
 <tr><th align="left">Toby Ho</th><td><a href="https://github.com/airportyh">GitHub/airportyh</a></td></tr>
-<tr><th align="left">Devin Weaver</th><td><a href="https://github.com/sukimah">GitHub/sukimah</a></td></tr>
+<tr><th align="left">Devin Weaver</th><td><a href="https://github.com/sukima">GitHub/sukima</a></td></tr>
 <tr><th align="left">Stein Martin Hustad</th><td><a href="https://github.com/smh">GitHub/smh</a></td></tr>
 <tr><th align="left">00Davo</th><td><a href="https://github.com/00Davo">GitHub/00Davo</a></td></tr>
 <tr><th align="left">Max Nordlund</th><td><a href="https://github.com/maxnordlund">GitHub/maxnordlund</a></td></tr>
