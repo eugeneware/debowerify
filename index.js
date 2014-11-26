@@ -8,7 +8,7 @@ var traverse = require('ordered-ast-traverse');
 module.exports = function (file) {
   var bowerModules;
 
-  if (!/\.(js|c?jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
+  if (!/\.(_?js|c?jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
   var data = '';
 
   var tr = through(write, end);
