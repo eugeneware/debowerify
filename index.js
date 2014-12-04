@@ -5,7 +5,7 @@ var through = require('through');
 var esprima = require('esprima');
 var traverse = require('ordered-ast-traverse');
 
-module.exports = function (file) {
+module.exports = function (file, options) {
   var bowerModules;
 
   if (!/\.(_?js|c?jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
@@ -17,7 +17,15 @@ module.exports = function (file) {
   function write (buf) { data += buf; }
   function end () {
     if (bowerModules === undefined) {
-      bower.commands.list({}, {offline: true})
+      bower_options = { offline: true }
+
+      if (options.bower_options) {
+        for (var option in options.bower_options) {
+          bower_options[option] = options.bower_options[option];
+        }
+      }
+
+      bower.commands.list({}, bower_options)
         .on('end', function (map) {
           bowerModules = map;
           next();
