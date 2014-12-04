@@ -17,15 +17,15 @@ module.exports = function (file, options) {
   function write (buf) { data += buf; }
   function end () {
     if (bowerModules === undefined) {
-      bower_options = { offline: true }
+      var bowerOptions = { offline: true }
 
-      if (options.bower_options) {
-        for (var option in options.bower_options) {
-          bower_options[option] = options.bower_options[option];
+      if (options.bowerOptions) {
+        for (var option in options.bowerOptions) {
+          bowerOptions[option] = options.bowerOptions[option];
         }
       }
 
-      bower.commands.list({}, bower_options)
+      bower.commands.list({}, bowerOptions)
         .on('end', function (map) {
           bowerModules = map;
           next();
