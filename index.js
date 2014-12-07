@@ -76,11 +76,7 @@ module.exports = function (file, options) {
    * @return {Object} Bower API options
    */
   function getBowerOptions(options) {
-    var bowerOptions = {};
-
-    if (typeof options.bowerOptions === 'object') {
-      bowerOptions = options.bowerOptions;
-    }
+    var bowerOptions = options.bowerOptions || {};
 
     if (typeof bowerOptions.offline === 'undefined') {
       bowerOptions.offline = true;
