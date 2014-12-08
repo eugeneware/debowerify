@@ -119,4 +119,5 @@ debowerify is only possible due to the excellent work of the following contribut
 <tr><th align="left">00Davo</th><td><a href="https://github.com/00Davo">GitHub/00Davo</a></td></tr>
 <tr><th align="left">Max Nordlund</th><td><a href="https://github.com/maxnordlund">GitHub/maxnordlund</a></td></tr>
 <tr><th align="left">Christian Tellnes</th><td><a href="https://github.com/tellnes">GitHub/tellnes</a></td></tr>
+<tr><th align="left">Jorrit Posthuma</th><td><a href="https://github.com/JorritPosthuma">GitHub/JorritPosthuma</a></td></tr>
 </tbody></table>
