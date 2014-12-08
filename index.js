@@ -5,7 +5,7 @@ var through = require('through');
 var esprima = require('esprima');
 var traverse = require('ordered-ast-traverse');
 
-module.exports = function (file) {
+module.exports = function (file, options) {
   var bowerModules;
 
   if (!/\.(_?js|c?jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
@@ -17,7 +17,9 @@ module.exports = function (file) {
   function write (buf) { data += buf; }
   function end () {
     if (bowerModules === undefined) {
-      bower.commands.list({}, {offline: true})
+      var bowerOptions = getBowerOptions(options);
+
+      bower.commands.list({}, bowerOptions)
         .on('end', function (map) {
           bowerModules = map;
           next();
@@ -67,6 +69,20 @@ module.exports = function (file) {
       var module = dependencies[name] || getModule(name, dependencies[dependencyName]);
       if (module) return module;
     }
+  };
+
+  /**
+   * @param {Object} Browserify options object containing possible 'bowerOptions'
+   * @return {Object} Bower API options
+   */
+  function getBowerOptions(options) {
+    var bowerOptions = options.bowerOptions || {};
+
+    if (typeof bowerOptions.offline === 'undefined') {
+      bowerOptions.offline = true;
+    }
+
+    return bowerOptions;
   };
 
   function parse () {
