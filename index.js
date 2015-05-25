@@ -123,15 +123,15 @@ module.exports = function (file, options) {
         requiredFilePaths = [ requiredFilePaths ]
       }
 
-      var realtiveRequiredFilePaths = []
+      var relativeRequiredFilePaths = []
 
       requiredFilePaths.forEach(function (requiredFilePath) {
         var fullModulePath = path.resolve(path.join(module.canonicalDir, requiredFilePath));
         var relativeRequiredFilePath = './' + path.relative(path.dirname(file), fullModulePath);
-        realtiveRequiredFilePaths.push(JSON.stringify(relativeRequiredFilePath))
+        relativeRequiredFilePaths.push(JSON.stringify(relativeRequiredFilePath))
       })
 
-      replaceNode(node.arguments[0], realtiveRequiredFilePaths);
+      replaceNode(node.arguments[0], relativeRequiredFilePaths);
 
     }});
 
