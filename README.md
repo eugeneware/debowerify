@@ -121,4 +121,5 @@ debowerify is only possible due to the excellent work of the following contribut
 <tr><th align="left">Christian Tellnes</th><td><a href="https://github.com/tellnes">GitHub/tellnes</a></td></tr>
 <tr><th align="left">Jorrit Posthuma</th><td><a href="https://github.com/JorritPosthuma">GitHub/JorritPosthuma</a></td></tr>
 <tr><th align="left">Andrew Smith</th><td><a href="https://github.com/ashrewdmint">GitHub/ashrewdmint</a></td></tr>
+<tr><th align="left">Adam Duncan</th><td><a href="https://github.com/microadam">GitHub/microadam</a></td></tr>
 </tbody></table>
