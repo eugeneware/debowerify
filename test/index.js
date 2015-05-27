@@ -72,4 +72,17 @@ describe('debowerify', function() {
     });
   });
 
+  it('should be able to debowerify a module with multiple main entries', function(done) {
+    var b = browserify();
+    b.add(path.join(__dirname, '..', 'public', 'multiple_main_entries.js'));
+    b.transform(debowerify);
+    b.bundle(function (err, src) {
+      if (err) return done(err);
+      var sandbox = { count: 0 };
+      vm.runInNewContext(src, sandbox);
+      expect(sandbox.count).to.equal(3);
+      done();
+    });
+  });
+
 });

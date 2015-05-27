@@ -109,30 +109,42 @@ module.exports = function (file, options) {
       }
 
       var pkgMeta = module.pkgMeta;
-      var requiredFilePath = moduleSubPath;
+      var requiredFilePaths = moduleSubPath;
 
-      if (!requiredFilePath){
+      if (!requiredFilePaths){
         if (pkgMeta && pkgMeta.main) {
-          requiredFilePath = Array.isArray(pkgMeta.main) ? pkgMeta.main.filter(function (file) { return /\.js$/.test(file); })[0] : pkgMeta.main;
+          requiredFilePaths = Array.isArray(pkgMeta.main) ? pkgMeta.main.filter(function (file) { return /\.js$/.test(file); }) : [ pkgMeta.main ];
         } else {
           // if 'main' wasn't specified by this component, let's try
           // guessing that the main file is moduleName.js
-          requiredFilePath = moduleName + '.js';
+          requiredFilePaths = [ moduleName + '.js' ];
         }
+      } else {
+        requiredFilePaths = [ requiredFilePaths ]
       }
 
+      var relativeRequiredFilePaths = []
 
-      var fullModulePath = path.resolve(path.join(module.canonicalDir, requiredFilePath));
-      var relativeRequiredFilePath = './' + path.relative(path.dirname(file), fullModulePath);
+      requiredFilePaths.forEach(function (requiredFilePath) {
+        var fullModulePath = path.resolve(path.join(module.canonicalDir, requiredFilePath));
+        var relativeRequiredFilePath = './' + path.relative(path.dirname(file), fullModulePath);
+        relativeRequiredFilePaths.push(JSON.stringify(relativeRequiredFilePath))
+      })
 
-      replaceNode(node.arguments[0], JSON.stringify(relativeRequiredFilePath));
+      replaceNode(node.arguments[0], relativeRequiredFilePaths);
+
     }});
 
-    function replaceNode(node, s) {
+    function replaceNode(node, paths) {
+      var s = paths.shift()
       chunks[node.range[0]] = s;
       for (var i = node.range[0] + 1; i < node.range[1]; i++) {
           chunks[i] = '';
       }
+      paths.forEach(function (p) {
+        var st = '\nrequire(' + p + ')'
+        chunks[node.range[1] + 1] = st
+      })
     }
 
     function getModuleName(path) {
