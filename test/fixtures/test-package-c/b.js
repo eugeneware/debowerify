@@ -1,1 +1,1 @@
-console.log('bbb')
+count += 2

@@ -1,1 +1,1 @@
-console.log('aaa')
+count += 1

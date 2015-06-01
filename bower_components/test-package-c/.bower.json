@@ -2,7 +2,8 @@
   "name": "test-package-c",
   "main": [
     "./a.js",
-    "./b.js"
+    "./b.js",
+    "./c.js"
   ],
   "_source": "/Users/Adam/projects/personal/debowerify/test/fixtures/test-package-c",
   "_target": "*",
