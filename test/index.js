@@ -72,7 +72,7 @@ describe('debowerify', function() {
     });
   });
 
-  it.only('should be able to debowerify a module with multiple main entries', function(done) {
+  it('should be able to debowerify a module with multiple main entries', function(done) {
     var b = browserify();
     b.add(path.join(__dirname, '..', 'public', 'multiple_main_entries.js'));
     b.transform(debowerify);
@@ -85,4 +85,31 @@ describe('debowerify', function() {
     });
   });
 
+  it('should be able to debowerify a module with a broken `main` section with overrides', function(done) {
+    var b = browserify();
+    b.add(path.join(__dirname, '..', 'public', 'overrides.js'));
+    b.transform(debowerify);
+    b.bundle(function (err, src) {
+      if (err) return done(err);
+      var sandbox = { loaded: false };
+      vm.runInNewContext(src, sandbox);
+      expect(sandbox.loaded).to.equal(true);
+      done();
+    });
+  });
+
+  it('should be able to use NODE_ENV to choose which file to debowerify', function(done) {
+    process.env.NODE_ENV = 'production'
+    var b = browserify();
+    b.add(path.join(__dirname, '..', 'public', 'overrides2.js'));
+    b.transform(debowerify);
+    b.bundle(function (err, src) {
+      if (err) return done(err);
+      var sandbox = { minified: null, notMinified: null };
+      vm.runInNewContext(src, sandbox);
+      expect(sandbox.minified).to.equal(true);
+      expect(sandbox.notMinified).to.equal(null);
+      done();
+    });
+  });
 });

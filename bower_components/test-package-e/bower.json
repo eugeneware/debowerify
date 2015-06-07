@@ -1,0 +1,7 @@
+{
+  "name": "test-package-e",
+  "main": [
+    "./main.js",
+    "./main.min.js"
+  ]
+}
