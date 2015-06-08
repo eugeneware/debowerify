@@ -143,9 +143,9 @@ module.exports = function (file, options) {
       for (var i = node.range[0] + 1; i < node.range[1]; i++) {
           chunks[i] = '';
       }
-      paths.forEach(function (p, i) {
+      paths.forEach(function (p) {
         var st = '\nrequire(' + p + ')'
-        chunks[node.range[1] + (i + 1)] = st
+        chunks[node.range[1] + 1] = st
       })
     }
 
