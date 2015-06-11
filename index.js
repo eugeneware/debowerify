@@ -130,21 +130,21 @@ module.exports = function (file, options) {
         var relativeRequiredFilePath = './' + path.relative(path.dirname(file), fullModulePath);
         relativeRequiredFilePaths.push(JSON.stringify(relativeRequiredFilePath))
       })
-
+  
       replaceNode(node.arguments[0], relativeRequiredFilePaths);
-
+      
     }});
 
     function replaceNode(node, paths) {
-      var s = paths.shift()
-      chunks[node.range[0]] = s;
+      chunks[node.range[0]] = paths.shift() || '';
       for (var i = node.range[0] + 1; i < node.range[1]; i++) {
-          chunks[i] = '';
+        chunks[i] = '';
       }
-      paths.forEach(function (p, i) {
-        var st = '\nrequire(' + p + ')'
-        chunks[node.range[1] + (i + 1)] = st
-      })
+      if(paths.length) {
+        chunks[node.range[1] + 1] = paths.map(function (p, i) {
+          return (i == 0 ? '\n' : '') + 'require(' + p + ')'
+        }).join(', ') + chunks[node.range[1] + 1];
+      }
     }
 
     function getModuleName(path) {
