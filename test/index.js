@@ -72,7 +72,7 @@ describe('debowerify', function() {
     });
   });
 
-  it.only('should be able to debowerify a module with multiple main entries', function(done) {
+  it('should be able to debowerify a module with multiple main entries', function(done) {
     var b = browserify();
     b.add(path.join(__dirname, '..', 'public', 'multiple_main_entries.js'));
     b.transform(debowerify);
