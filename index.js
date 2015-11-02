@@ -9,11 +9,15 @@ module.exports = function (file, options) {
   var bowerModules;
   if (!options) options = {};
 
-  if (!/\.(_?js|c?jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
+  if (ignoring(file)) return through();
   var data = '';
 
   var tr = through(write, end);
   return tr;
+
+  function ignoring(file) {
+    return !/\.(_?js|c?jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file);
+  }
 
   function write (buf) { data += buf; }
   function end () {
