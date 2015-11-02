@@ -16,7 +16,7 @@ module.exports = function (file, options) {
   return tr;
 
   function ignoring(file) {
-    return !/\.(_?js|c?jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file);
+    return !/\.(_?js|c?jsx|(lit)?coffee(\.md)?|ls|ts|es6)$/.test(file);
   }
 
   function write (buf) { data += buf; }
