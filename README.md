@@ -53,6 +53,12 @@ $ browserify -t debowerify  public/scripts/app.js -o public/scripts/build/bundle
 
 Then include your bundle.js in your HTML file and you're done!
 
+## Options
+
+### preferNPM
+
+Set `preferNPM` option to `true`, or an array of module names, to have `debowerify` prefer NPM modules over bower components. This is useful for when you have a module that is installed both as a node module and as a bower component.
+
 # How to use with AMD components
 
 If your bower components are amd and they don't support commonjs modules than simply use debowerify with the excellent [deamdify](https://github.com/jaredhanson/deamdify) browserify transform. For example, the following AMD bower import:

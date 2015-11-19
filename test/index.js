@@ -43,6 +43,78 @@ describe('debowerify', function() {
     });
   });
 
+  it('should prefer a bower component over an NPM module, if preferNPM is not set ', function(done) {
+    var jsPath = path.join(__dirname, '..', 'public', 'node_resolvable.js');
+    var b = browserify();
+    b.add(jsPath);
+    b.transform(debowerify);
+    b.bundle(function (err, src) {
+      if (err) return done(err);
+      vm.runInNewContext(src, {
+        console: {
+          log: function (chai) {
+            expect(chai.version).to.equal('fake-chai-module-version-0');
+            done();
+          }
+        }
+      });
+    });
+  });
+
+  it('should prefer a node module over a bower component, if preferNPM is true', function(done) {
+    var jsPath = path.join(__dirname, '..', 'public', 'node_resolvable.js');
+    var b = browserify();
+    b.add(jsPath);
+    b.transform(debowerify, {preferNPM: true});
+    b.bundle(function (err, src) {
+      if (err) return done(err);
+      vm.runInNewContext(src, {
+        console: {
+          log: function (chai) {
+            expect(chai.version).to.equal(require('chai').version);
+            done();
+          }
+        }
+      });
+    });
+  });
+
+  it('should prefer a bower component over an NPM module, if preferNPM does not contain module name', function(done) {
+    var jsPath = path.join(__dirname, '..', 'public', 'node_resolvable.js');
+    var b = browserify();
+    b.add(jsPath);
+    b.transform(debowerify, {preferNPM: ['path', 'fs']});
+    b.bundle(function (err, src) {
+      if (err) return done(err);
+      vm.runInNewContext(src, {
+        console: {
+          log: function (chai) {
+            expect(chai.version).to.equal('fake-chai-module-version-0');
+            done();
+          }
+        }
+      });
+    });
+  });
+
+  it('should prefer a node module over a bower component, if preferNPM contains module name', function(done) {
+    var jsPath = path.join(__dirname, '..', 'public', 'node_resolvable.js');
+    var b = browserify();
+    b.add(jsPath);
+    b.transform(debowerify, {preferNPM: ['path', 'chai']});
+    b.bundle(function (err, src) {
+      if (err) return done(err);
+      vm.runInNewContext(src, {
+        console: {
+          log: function (chai) {
+            expect(chai.version).to.equal(require('chai').version);
+            done();
+          }
+        }
+      });
+    });
+  });
+
   it('should be able to debowerify a submodule', function(done) {
     var jsPath = path.join(__dirname, '..', 'public', 'by_subpath.js');
     var b = browserify();
