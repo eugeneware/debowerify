@@ -100,6 +100,11 @@ module.exports = function (file, options) {
       var moduleName = getModuleName(pth);
       var moduleSubPath = getModuleSubPath(pth);
 
+      var preferNPM = (typeof options.preferNPM === 'boolean') ? options.preferNPM : 
+          (typeof options.preferNPM === 'object' && options.preferNPM.length && options.preferNPM.indexOf(moduleName) !== -1);
+
+      if(preferNPM && nodeCanResolve(moduleName)) return;
+
       var module = getModule(moduleName);
       if (!module) return;
 
@@ -155,6 +160,14 @@ module.exports = function (file, options) {
       var idx = path.indexOf('/')
       if (idx === -1) return null
       return path.substring(idx)
+    }
+
+    function nodeCanResolve(moduleName) {
+      try {
+        return !!require.resolve(moduleName);
+      } catch(e) {
+        return false;
+      }
     }
 
     return chunks.join('');
