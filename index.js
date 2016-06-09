@@ -9,7 +9,7 @@ module.exports = function (file, options) {
   var bowerModules;
   if (!options) options = {};
 
-  if (!/\.(_?js|c?jsx|(lit)?coffee(\.md)?|ls|ts)$/.test(file)) return through();
+  if (!/\.(_?js|c?jsx|(lit)?coffee(\.md)?|ls|ts|es6)$/.test(file)) return through();
   var data = '';
 
   var tr = through(write, end);
