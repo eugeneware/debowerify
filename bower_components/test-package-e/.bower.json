@@ -1,0 +1,10 @@
+{
+  "name": "test-package-e",
+  "main": [
+    "./main.js",
+    "./main.min.js"
+  ],
+  "_source": "/Users/lincoln/Work/Checkouts/debowerify/test/fixtures/test-package-e",
+  "_target": "*",
+  "_originalSource": "./test/fixtures/test-package-e"
+}
