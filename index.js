@@ -147,8 +147,12 @@ module.exports = function (file, options) {
           chunks[i] = '';
       }
       paths.forEach(function (p, i) {
-        var st = '\nrequire(' + p + ')'
-        chunks[node.range[1] + (i + 1)] = st
+        var st = '\nrequire(' + p + ');'
+        if (i === 0) {
+          chunks[node.range[1] + (i + 1)] = st
+        } else {
+          chunks[node.range[1] + (i)] = st
+        }
       })
     }
 
