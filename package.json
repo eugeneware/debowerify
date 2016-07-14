@@ -17,7 +17,7 @@
   "author": "Eugene Ware <eugene@noblesamurai.com>",
   "license": "BSD",
   "dependencies": {
-    "bower": "~1.3.12",
+    "bower": "~1.7.9",
     "esprima": "^2.0.0",
     "ordered-ast-traverse": "^1.1.1",
     "through": "~2.3.4"
