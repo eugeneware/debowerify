@@ -117,8 +117,10 @@ module.exports = function (file, options) {
       var requiredFilePaths = moduleSubPath;
 
       if (!requiredFilePaths){
-        if (pkgMeta && pkgMeta.main) {
-          requiredFilePaths = Array.isArray(pkgMeta.main) ? pkgMeta.main.filter(function (file) { return /\.js$/.test(file); }) : [ pkgMeta.main ];
+        var pkg = (bowerModules.pkgMeta.overrides[moduleName] || {}).main || pkgMeta.main;
+        if (pkgMeta && pkg) {
+          pkg = pkg[process.env.NODE_ENV] || pkg;
+          requiredFilePaths = Array.isArray(pkg) ? pkg.filter(function (file) { return /\.(js|coffee)$/.test(file); }) : [ pkg ];
         } else {
           // if 'main' wasn't specified by this component, let's try
           // guessing that the main file is moduleName.js
@@ -146,9 +148,9 @@ module.exports = function (file, options) {
       for (var i = node.range[0] + 1; i < node.range[1]; i++) {
           chunks[i] = '';
       }
-      paths.forEach(function (p, i) {
+      paths.forEach(function (p) {
         var st = '\nrequire(' + p + ')'
-        chunks[node.range[1] + (i + 1)] = st
+        chunks[node.range[1] + 1] = st
       })
     }
 

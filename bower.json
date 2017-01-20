@@ -2,11 +2,24 @@
   "name": "debowerify-test",
   "verision": "0.0.0",
   "dependencies": {
-    "js-base64": "~2.1.2"
+    "js-base64": "~2.1.2",
+    "test-package-d": "./test/fixtures/test-package-d",
+    "test-package-e": "./test/fixtures/test-package-e"
   },
   "devDependencies": {
     "base62": "~0.4.0",
     "test-package-a": "./test/fixtures/test-package-a",
     "test-package-c": "./test/fixtures/test-package-c"
+  },
+  "overrides": {
+    "test-package-d": {
+      "main": "main.js"
+    },
+    "test-package-e": {
+      "main": {
+        "production": "main.min.js",
+        "development": "main.js"
+      }
+    }
   }
 }
