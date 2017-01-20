@@ -23,17 +23,22 @@
     "through": "~2.3.4"
   },
   "devDependencies": {
-    "domready": "~1.0.4",
-    "deamdify": "~0.1.1",
+    "browserify": "~9.0.0",
     "chai": "~1.9.0",
+    "deamdify": "~0.1.1",
+    "domready": "~1.0.4",
     "mocha": "^2.1.0",
-    "browserify": "~9.0.0"
+    "test-peer-range": "^1.0.1"
+  },
+  "peerDependencies": {
+    "browserify": ">= 2"
   },
   "readmeFilename": "README.md",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha"
+    "test": "test-peer-range browserify",
+    "test-main": "mocha"
   }
 }
